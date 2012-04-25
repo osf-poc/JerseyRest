@@ -1,5 +1,6 @@
-
 package osf.poc.jersey;
+
+import javax.ws.rs.core.MediaType;
 
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
@@ -10,16 +11,16 @@ import javax.ws.rs.Produces;
 @Stateless
 public class ConfigurationResource {
     @GET
-    @Path("shit")
-    @Produces("text/xml")
-    public String shit() {
-        return "Singy";
+    @Path("conf1")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String config1() {
+        return "Config1";
     }
     
     @GET
-    @Path("smart")
-    @Produces("text/xml")
-    public String smart() {
-        return "Wicht";
+    @Path("conf2")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String config2() {
+        return "Config2";
     }
 }
