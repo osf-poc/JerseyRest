@@ -2,13 +2,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>osf.poc.jersey</groupId>
-    <artifactId>JerseyREST</artifactId>
+    <artifactId>JerseyRest</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>Jersey REST</name>
+    <name>Jersey Configuration</name>
 
     <build>
-        <finalName>JerseyREST</finalName>
+        <!--<finalName>JerseyRest</finalName>-->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -17,6 +17,28 @@
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                  <execution>
+                  <phase>install</phase>
+                  <goals>
+                  <goal>exec</goal>
+                  </goals>
+                  </execution>
+                </executions>
+                <configuration>
+                  <executable>${env.ASADMIN_PATH}</executable>
+                <!-- <workingDirectory>/tmp</workingDirectory> -->
+                <arguments>
+                  <argument>deploy</argument>
+                  <argument>--force</argument>
+                  <argument>${project.build.directory}/${project.artifactId}-${project.version}.war</argument>
+                </arguments>
                 </configuration>
             </plugin>
         </plugins>
@@ -42,8 +64,8 @@
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.ejb</artifactId>
-            <scope>provided</scope>
             <version>3.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
