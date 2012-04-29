@@ -1,11 +1,10 @@
-package osf.poc.jersey;
-
-import javax.ws.rs.core.MediaType;
+package osf.poc.jersey.resources;
 
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 @Path("/configuration")
 @Stateless
