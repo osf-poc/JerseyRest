@@ -25,4 +25,11 @@ public class PropertiesResource {
     public List<Property> getProperties() {
         return service.getProperties();
     }
+    
+    @GET
+    @Path("/init")
+    @Produces(MediaType.TEXT_PLAIN)
+    public void initProperties() {
+         service.init();
+    }
 }

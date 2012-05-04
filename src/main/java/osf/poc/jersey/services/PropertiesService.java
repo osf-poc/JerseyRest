@@ -1,23 +1,30 @@
 package osf.poc.jersey.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import osf.poc.jersey.model.Property;
 
 @Stateless
 public class PropertiesService {
-    private List<Property> properties = new ArrayList<Property>();
-    
-    public PropertiesService(){
-        super();
+    @PersistenceContext
+    private EntityManager em;
         
-        for(int i = 0; i < 1000; ++i){
-            properties.add(new Property("count" + i, "" + i));
-        }
-    }
-    
     public List<Property> getProperties() {
-        return new ArrayList<Property>(this.properties);
+        Query query = em.createQuery("Select p from Property p");
+        
+        return query.getResultList();
+    }
+
+    public void init() {
+        for(int i = 0; i < 100; ++i){
+            Property property = new Property();
+            property.setName("count" + i);
+            property.setText("" + i);
+            
+            em.persist(property);
+        }
     }
 }
