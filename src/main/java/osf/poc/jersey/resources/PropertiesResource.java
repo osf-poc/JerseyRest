@@ -7,14 +7,15 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import osf.poc.jersey.model.Property;
-import osf.poc.jersey.services.PropertiesService;
+import osf.poc.model.Property;
+import osf.poc.services.PropertiesServiceLocal;
 
 @Path("/properties")
 @Stateless
 public class PropertiesResource {
+    
     @EJB
-    private PropertiesService service;
+    private PropertiesServiceLocal service;
     
     public PropertiesResource(){
         super();

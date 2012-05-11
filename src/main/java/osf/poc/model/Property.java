@@ -1,12 +1,12 @@
-package osf.poc.jersey.model;
+package osf.poc.model;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Main model class representing a configuration property
+ */
 @Entity
 @XmlRootElement
 public class Property implements Serializable {
@@ -17,19 +17,17 @@ public class Property implements Serializable {
     private Long id;
     
     private String name;
-    private String text;
     
-    public Property(){
-        super();
-        
-        //Nothing
+    @Column(name="val")
+    private String value;
+    
+    public Property() {
+        // Nothing to do
     }
     
-    public Property(String name, String value){
-        super();
-        
+    public Property(String name, String value) {
         this.name = name;
-        this.text = value;
+        this.value = value;
     }
 
     public String getName() {
@@ -40,12 +38,12 @@ public class Property implements Serializable {
         this.name = name;
     }
 
-    public String getText() {
-        return text;
+    public String getValue() {
+        return value;
     }
 
     public void setText(String text) {
-        this.text = text;
+        this.value = text;
     }
 
     @Override
@@ -63,7 +61,7 @@ public class Property implements Serializable {
         if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
             return false;
         }
-        if ((this.text == null) ? (other.text != null) : !this.text.equals(other.text)) {
+        if ((this.value == null) ? (other.value != null) : !this.value.equals(other.value)) {
             return false;
         }
         return true;
@@ -74,12 +72,12 @@ public class Property implements Serializable {
         int hash = 7;
         hash = 53 * hash + (this.id != null ? this.id.hashCode() : 0);
         hash = 53 * hash + (this.name != null ? this.name.hashCode() : 0);
-        hash = 53 * hash + (this.text != null ? this.text.hashCode() : 0);
+        hash = 53 * hash + (this.value != null ? this.value.hashCode() : 0);
         return hash;
     }
 
     @Override
     public String toString() {
-        return "Property{" + "id=" + id + ", name=" + name + ", value=" + text + '}';
+        return "Property{" + "id=" + id + ", name=" + name + ", value=" + value + '}';
     }
 }
