@@ -42,8 +42,8 @@ public class Property implements Serializable {
         return value;
     }
 
-    public void setText(String text) {
-        this.value = text;
+    public void setValue(String value) {
+        this.value = value;
     }
 
     @Override

@@ -18,10 +18,10 @@ public class PropertiesService implements PropertiesServiceLocal {
     
     @Override
     public void init() {
-        for(int i = 0; i < 100; ++i){
+        for(int i = 0; i < 100; ++i) {
             Property property = new Property();
             property.setName("count" + i);
-            property.setText("" + i);
+            property.setValue("" + i);
             
             em.persist(property);
         }
